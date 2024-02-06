@@ -16,10 +16,13 @@ const initializeApp = async () => {
 
   const app = express();
   const port = process.env.PORT || 3000;
+  app.use(express.json())
 
   const pokemonController = new PokemonController(new PokemonService(ormDataSource));
+
   app.get('/random-pokemons', pokemonController.getRandomPokemons.bind(pokemonController));
   app.get('/top-ten-pokemons', pokemonController.getTopTenPokemons.bind(pokemonController));
+  app.post('/vote', pokemonController.voteForPokemon.bind(pokemonController));
 
   app.listen(port, async () => {
     console.log(`Server is running on http://localhost:${port}`);

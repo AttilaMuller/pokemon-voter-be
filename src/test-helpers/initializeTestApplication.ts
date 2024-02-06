@@ -21,11 +21,17 @@ export const initializeTestApplication = async (dataSource: DataSource) => {
   const pokemonController = new PokemonController(pokemonService);
 
   const app = express();
+  app.use(express.json())
+
   app.get('/random-pokemons', async (req, res) => {
     await pokemonController.getRandomPokemons(req, res);
   });
   app.get('/top-ten-pokemons', async (req, res) => {
     await pokemonController.getTopTenPokemons(req, res);
   });
+  app.post('/vote', async (req, res) => {
+    await pokemonController.voteForPokemon(req, res);
+  });
+
   return app;
 }

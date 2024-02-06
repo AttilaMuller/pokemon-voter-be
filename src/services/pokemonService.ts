@@ -26,4 +26,16 @@ export class PokemonService {
 
     return pokemons;
   }
+
+  async voteForPokemon(id: number): Promise<Pokemon> {
+    const pokemonRepository =  this.dataSource.getRepository(Pokemon);
+    const pokemon = await pokemonRepository.findOneBy({ id });
+
+    if (pokemon) {
+      pokemon.votes += 1;
+      return await pokemonRepository.save(pokemon);
+    } else {
+      throw Error('Pokemon not found');
+    }
+  }
 }

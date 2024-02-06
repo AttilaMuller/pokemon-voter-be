@@ -27,4 +27,19 @@ export class PokemonController {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  async voteForPokemon(req: Request, res: Response) {
+    try {
+      const { pokemonId } = req.body;
+      const pokemon = await this.pokemonService.voteForPokemon(pokemonId);
+      res.json(pokemon);
+    } catch (error: any) {
+      console.error('Error during voting:', error.message);
+      if (error.message === 'Pokemon not found'){
+        res.status(404).json({ error: error.message });
+      } else {
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    }
+  }
 }

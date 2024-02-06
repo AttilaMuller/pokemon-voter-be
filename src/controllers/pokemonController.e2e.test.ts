@@ -18,7 +18,7 @@ describe('PokemonController', () => {
     await dataSource.destroy();
   });
 
-  describe('#random-pokemons', () => {
+  describe('#getRandomPokemons', () => {
     it('should retrieve random pokemons', async () => {
       const response = await request(app).get('/random-pokemons');
   
@@ -28,7 +28,7 @@ describe('PokemonController', () => {
     });
   })
 
-  describe('#top-ten-pokemons', () => {
+  describe('#getTopTenPokemons', () => {
     it('should retrieve top ten pokemons', async () => {
       const response = await request(app).get('/top-ten-pokemons');
   
@@ -36,6 +36,23 @@ describe('PokemonController', () => {
       expect(response.body).toHaveLength(10);
       expect(response.body[0].votes).toEqual(15);
       expect(response.body[response.body.length - 1].votes).toEqual(6);
+    });
+  })
+
+  describe('#voteForPokemon', () => {
+    it('should be able to vote', async () => {
+      const pokemonRepository = dataSource.getRepository(Pokemon);
+      const pokemon = await pokemonRepository.findOneBy({name: 'test_name_1'});
+      const response = await request(app).post('/vote').send({ pokemonId: pokemon!.id });
+  
+      expect(response.status).toBe(200);
+      expect(response.body.votes).toEqual(pokemon!.votes + 1);
+    });
+
+    it('should get error when id does not exist', async () => {
+      const response = await request(app).post('/vote').send({ pokemonId: 54321 });
+  
+      expect(response.status).toBe(404);
     });
   })
 });
