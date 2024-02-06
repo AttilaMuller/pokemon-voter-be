@@ -27,7 +27,6 @@ export class FetchPokemonService {
         await ormDataSource.getRepository(Pokemon).save(pokemon);
       }
     } catch (error: any) {
-      console.error('Error during fetching pokemon data', error.message);
       throw new Error('Pokemon data fetching failed');
     }
   }

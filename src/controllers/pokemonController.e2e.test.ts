@@ -54,6 +54,12 @@ describe('PokemonController', () => {
   
       expect(response.status).toBe(404);
     });
+
+    it('should get error when id is not number', async () => {
+      const response = await request(app).post('/vote').send({ pokemonId: 'hello' });
+  
+      expect(response.status).toBe(403);
+    });
   })
 });
 

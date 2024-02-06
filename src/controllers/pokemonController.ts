@@ -13,7 +13,6 @@ export class PokemonController {
       const pokemons = await this.pokemonService.getRandomPokemons();
       res.json(pokemons);
     } catch (error: any) {
-      console.error('Error retrieving random pokemons:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
@@ -23,7 +22,6 @@ export class PokemonController {
       const pokemons = await this.pokemonService.getTopTenPokemons();
       res.json(pokemons);
     } catch (error: any) {
-      console.error('Error retrieving top ten pokemons:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
@@ -31,10 +29,13 @@ export class PokemonController {
   async voteForPokemon(req: Request, res: Response) {
     try {
       const { pokemonId } = req.body;
+      if (typeof pokemonId !== 'number') {
+        res.status(403).json({ error: 'Only numbers should be provided as id' });
+        return;
+      }
       const pokemon = await this.pokemonService.voteForPokemon(pokemonId);
       res.json(pokemon);
     } catch (error: any) {
-      console.error('Error during voting:', error.message);
       if (error.message === 'Pokemon not found'){
         res.status(404).json({ error: error.message });
       } else {
