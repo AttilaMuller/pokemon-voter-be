@@ -4,13 +4,13 @@ import { PokemonService } from './services/pokemonService';
 
 const initializeApp = async () => {
   await ormDataSource
-  .initialize()
-  .then(() => {
-      console.log("ORM has been initialized!")
-  })
-  .catch((err) => {
-      console.error("Error during ORM initialization:", err)
-  })
+    .initialize()
+    .then(() => {
+        console.log("ORM has been initialized!")
+    })
+    .catch((err) => {
+        console.error("Error during ORM initialization:", err)
+    })
 
   const app = express();
   const port = process.env.PORT || 3000;
