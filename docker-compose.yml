@@ -3,10 +3,6 @@ version: '3.8'
 services:
   postgres:
     image: postgres:latest
-    environment:
-      - POSTGRES_DB=yourdbname
-      - POSTGRES_USER=yourdbuser
-      - POSTGRES_PASSWORD=yourdbpassword
     ports:
       - "5432:5432"
   nodejs:
@@ -17,5 +13,3 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
-    environment:
-      - DATABASE_URL=postgres://yourdbuser:yourdbpassword@postgres:5432/yourdbname

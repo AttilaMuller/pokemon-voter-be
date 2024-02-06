@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "test": "jest",
-    "docker": "docker-compose up"
+    "docker": "docker compose --env-file .env up --build"
   },
   "keywords": [],
   "author": "",
