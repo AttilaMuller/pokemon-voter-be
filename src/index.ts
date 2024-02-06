@@ -19,6 +19,7 @@ const initializeApp = async () => {
 
   const pokemonController = new PokemonController(new PokemonService(ormDataSource));
   app.get('/random-pokemons', pokemonController.getRandomPokemons.bind(pokemonController));
+  app.get('/top-ten-pokemons', pokemonController.getTopTenPokemons.bind(pokemonController));
 
   app.listen(port, async () => {
     console.log(`Server is running on http://localhost:${port}`);

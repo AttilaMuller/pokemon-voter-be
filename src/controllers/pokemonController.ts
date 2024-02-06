@@ -17,4 +17,14 @@ export class PokemonController {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  async getTopTenPokemons(req: Request, res: Response) {
+    try {
+      const pokemons = await this.pokemonService.getTopTenPokemons();
+      res.json(pokemons);
+    } catch (error: any) {
+      console.error('Error retrieving top ten pokemons:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 }

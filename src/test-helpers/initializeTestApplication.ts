@@ -24,5 +24,8 @@ export const initializeTestApplication = async (dataSource: DataSource) => {
   app.get('/random-pokemons', async (req, res) => {
     await pokemonController.getRandomPokemons(req, res);
   });
+  app.get('/top-ten-pokemons', async (req, res) => {
+    await pokemonController.getTopTenPokemons(req, res);
+  });
   return app;
 }

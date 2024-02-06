@@ -9,11 +9,21 @@ export class PokemonService {
   }
 
   async getRandomPokemons(): Promise<Pokemon[]> {
-    const randomPokemons = await this.dataSource.getRepository(Pokemon).createQueryBuilder()
+    const pokemons = await this.dataSource.getRepository(Pokemon).createQueryBuilder()
     .orderBy("RANDOM()")
     .limit(2)
     .getMany();
 
-    return randomPokemons;
+    return pokemons;
+  }
+
+  async getTopTenPokemons(): Promise<Pokemon[]> {
+    const pokemonRepository =  this.dataSource.getRepository(Pokemon);
+    const pokemons = await pokemonRepository.find({
+      order: { votes: 'DESC' },
+      take: 10
+    });
+
+    return pokemons;
   }
 }
