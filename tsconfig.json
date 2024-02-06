@@ -11,6 +11,7 @@
       "resolveJsonModule": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
+      "strictPropertyInitialization": false,
       "lib": ["es2019", "esnext.asynciterable"]
     },
     "include": ["src/**/*.ts"],
