@@ -18,7 +18,8 @@ const initializeApp = async () => {
   const port = process.env.PORT || 3000;
   app.use(express.json())
 
-  const pokemonController = new PokemonController(new PokemonService(ormDataSource));
+  const pokemonService = new PokemonService(ormDataSource);
+  const pokemonController = new PokemonController(pokemonService);
 
   app.get('/random-pokemons', pokemonController.getRandomPokemons.bind(pokemonController));
   app.get('/top-ten-pokemons', pokemonController.getTopTenPokemons.bind(pokemonController));

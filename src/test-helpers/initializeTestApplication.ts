@@ -17,11 +17,11 @@ export const initializeTestApplication = async (dataSource: DataSource) => {
   const repository = dataSource.getRepository(Pokemon);
   await repository.clear(); 
 
-  const pokemonService = new PokemonService(dataSource);
-  const pokemonController = new PokemonController(pokemonService);
-
   const app = express();
   app.use(express.json())
+
+  const pokemonService = new PokemonService(dataSource);
+  const pokemonController = new PokemonController(pokemonService);
 
   app.get('/random-pokemons', pokemonController.getRandomPokemons.bind(pokemonController));
   app.get('/top-ten-pokemons', pokemonController.getTopTenPokemons.bind(pokemonController));
