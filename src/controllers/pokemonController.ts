@@ -43,4 +43,13 @@ export class PokemonController {
       }
     }
   }
+
+  async resetVotes(req: Request, res: Response) {
+    try {
+      await this.pokemonService.resetVotes();
+      res.status(200).send('Votes reset successfully');
+    } catch (error: any) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 }

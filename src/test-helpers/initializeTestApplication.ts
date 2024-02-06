@@ -32,6 +32,9 @@ export const initializeTestApplication = async (dataSource: DataSource) => {
   app.post('/vote', async (req, res) => {
     await pokemonController.voteForPokemon(req, res);
   });
+  app.post('/reset-votes', async (req, res) => {
+    await pokemonController.resetVotes(req, res);
+  });
 
   return app;
 }

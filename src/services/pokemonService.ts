@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource, Not } from 'typeorm';
 import { Pokemon } from '../entities/Pokemon';
 
 export class PokemonService {
@@ -37,5 +37,10 @@ export class PokemonService {
     } else {
       throw Error('Pokemon not found');
     }
+  }
+
+  async resetVotes(): Promise<void> {
+    const pokemonRepository =  this.dataSource.getRepository(Pokemon);
+    await pokemonRepository.update({}, { votes: 0 });
   }
 }

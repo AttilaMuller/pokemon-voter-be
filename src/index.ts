@@ -23,6 +23,7 @@ const initializeApp = async () => {
   app.get('/random-pokemons', pokemonController.getRandomPokemons.bind(pokemonController));
   app.get('/top-ten-pokemons', pokemonController.getTopTenPokemons.bind(pokemonController));
   app.post('/vote', pokemonController.voteForPokemon.bind(pokemonController));
+  app.post('/reset-votes', pokemonController.resetVotes.bind(pokemonController));
 
   app.listen(port, async () => {
     console.log(`Server is running on http://localhost:${port}`);
