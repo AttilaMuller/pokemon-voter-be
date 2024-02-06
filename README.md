@@ -11,7 +11,9 @@ This is the Pokemon Voter application backend
     - TypeScript
     - Jest and Supertest
 
-In order to be able to run tests and start application run:
+In order to be able to run tests and start application:
+- Rename .env.example to .env
+then run these commands:
 ```
 npm i
 npm docker
