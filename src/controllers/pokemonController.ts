@@ -30,7 +30,7 @@ export class PokemonController {
     try {
       const { pokemonId } = req.body;
       if (typeof pokemonId !== 'number') {
-        res.status(403).json({ error: 'Only numbers should be provided as id' });
+        res.status(403).json({ error: 'Only number should be provided as id' });
         return;
       }
       const pokemon = await this.pokemonService.voteForPokemon(pokemonId);
