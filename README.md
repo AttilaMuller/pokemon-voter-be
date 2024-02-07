@@ -16,6 +16,6 @@ In order to be able to run tests and start application:
 then run these commands:
 ```
 npm i
-npm docker
+npm run docker
 npm t
 ```
