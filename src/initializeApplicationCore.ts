@@ -2,6 +2,7 @@ import express from "express";
 import { DataSource } from "typeorm";
 import { PokemonService } from "./services/pokemonService";
 import { PokemonController } from "./controllers/pokemonController";
+import cors from "cors";
 
 export const initializeApplicationCore = async (ormDataSource: DataSource): Promise<express.Express> => {
   await ormDataSource
@@ -15,6 +16,7 @@ export const initializeApplicationCore = async (ormDataSource: DataSource): Prom
 
   const app = express();
   app.use(express.json());
+  app.use(cors());
 
   const pokemonService = new PokemonService(ormDataSource);
   const pokemonController = new PokemonController(pokemonService);
