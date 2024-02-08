@@ -1,5 +1,7 @@
 # pokemon-voter-be
 This is the Pokemon Voter application backend
+You can find the front end of this application here:
+- https://github.com/AttilaMuller/pokemon-voter-fe
 
 - This backend service uses
     - Docker (you need docker installed)
